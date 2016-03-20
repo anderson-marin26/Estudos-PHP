@@ -1,5 +1,5 @@
 
-<?php include("cabecalho.php"); include('conecta.php') ?>
+<?php include("cabecalho.php"); include('conecta.php'); include('banco-produto.php') ?>
 	<?php 
 
 	
@@ -8,10 +8,7 @@
 
 	//criando variavel com a conexao
 	//$conexao = mysqli_connect('localhost','root','','loja');
-	function insereProduto($conexao, $nome, $preco){
-		$query = "insert into produtos (nome,preco) values('{$nome}',{$preco})";
-		return mysqli_query($conexao,$query);
-	}
+	
 
 	
 
