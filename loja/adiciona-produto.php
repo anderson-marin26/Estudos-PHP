@@ -6,13 +6,6 @@
 	$nome = $_GET['nome'];
 	$preco = $_GET['preco'];
 
-	//criando variavel com a conexao
-	//$conexao = mysqli_connect('localhost','root','','loja');
-	
-
-	
-
-
 	if(insereProduto($conexao, $nome, $preco)) { ?>
 		<p class="text-success">Produto <?= $nome ?>, <?= $preco ?> adicionado com sucesso!</p>
 	<?php } else { $msg = mysqli_error($conexao); ?>
