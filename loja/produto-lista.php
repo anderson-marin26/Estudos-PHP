@@ -1,4 +1,10 @@
-<?php include('cabecalho.php'); include('conecta.php'); include('banco-produto.php');?>
+<?php include('cabecalho.php'); include('conecta.php'); include('banco-produto.php');
+	if(array_key_exists("removido", $_GET) && $_GET["removido"]=="true"){
+		?>
+		<p class="alert-success">Produto apagado com sucesso</p>
+		<?php
+	}
+?>
 
 	
 <table class = "table table-striped table-bordered">
@@ -13,7 +19,13 @@
 				<?=$produto['preco'];?>
 			</td> 
 			<td>
-				<a href = "remove-produto.php?id=<?=$produto['id']?>" class = "text-danger">Remover</a>
+				<?=substr($produto['descricao'],0,50);?>
+			</td>
+			<td>
+				<form action = "remove-produto.php" method = "POST">
+					<input type = "hidden" name = "id" value = "<?=$produto['id'];?>">
+					<button class = "btn btn-danger">Remover</button>
+				</form>
 			</td>
 		</tr>
 		<?php
