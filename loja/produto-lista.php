@@ -22,6 +22,12 @@
 				<?=substr($produto['descricao'],0,50);?>
 			</td>
 			<td>
+				<?=$produto['categoria_nome'];?>
+			</td>
+			<td>
+				<a href = "produto-altera-formulario.php?id=<?=$produto['id']?>" class = "btn btn-primary">Alterar</a>
+			</td>
+			<td>
 				<form action = "remove-produto.php" method = "POST">
 					<input type = "hidden" name = "id" value = "<?=$produto['id'];?>">
 					<button class = "btn btn-danger">Remover</button>

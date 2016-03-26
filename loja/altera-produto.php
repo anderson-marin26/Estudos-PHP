@@ -2,7 +2,7 @@
 <?php include("cabecalho.php"); include('conecta.php'); include('banco-produto.php') ?>
 	<?php 
 
-	
+	$id = $_POST['id'];
 	$nome = $_POST['nome'];
 	$preco = $_POST['preco'];
 	$descricao = $_POST['descricao'];
@@ -15,10 +15,10 @@
 	}
 	
 
-	if(insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado)) { ?>
-		<p class="text-success">Produto <?= $nome ?>, de preço <?= $preco ?> adicionado com sucesso!</p>
+	if(alteraProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado)) { ?>
+		<p class="text-success">Produto <?= $nome ?>, de preço <?= $preco ?> alterado com sucesso!</p>
 	<?php } else { $msg = mysqli_error($conexao); ?>
-			<p class="text-danger">Produto <?= $nome ?>, não foi adicionado: <?= $msg?></p>
+			<p class="text-danger">Produto <?= $nome ?>, não foi alterado: <?= $msg?></p>
 	<?php
 
 	}
