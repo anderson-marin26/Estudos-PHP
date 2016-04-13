@@ -6,7 +6,9 @@
 	<p class="alert-danger">Usuario ou senha invalida!</p>
 <?php }?>
 			<h1>Bem-Vindo</h1>
-
+			<?php if(isset($_COOKIE["usuario_logado"])) { ?>
+				<span class="alert-success">Voce esta logado com o email <?=$_COOKIE["usuario_logado"]?></span>
+			<?php } else{ ?>
 			<h2>Login</h2>
 			<form action="login.php" method="POST">
 				<table class="table">
@@ -23,4 +25,5 @@
 					</tr>
 				</table>
 			</form>
+			<?php } ?>
 <?php include('rodape.php'); ?>
