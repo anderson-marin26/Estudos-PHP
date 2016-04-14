@@ -1,5 +1,7 @@
-<?php include('cabecalho.php'); include('conecta.php'); include('banco-categoria.php');
+<?php include('cabecalho.php'); include('conecta.php'); include('banco-categoria.php'); include('logica-usuario.php');
 	$categorias = listaCategorias($conexao);
+
+	verificaUsuario();
 ?>
 			<h1>Formulario de Produto</h1>
 			<form action="adiciona-produto.php" method = "POST">

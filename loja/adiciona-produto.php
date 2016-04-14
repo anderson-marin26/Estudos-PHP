@@ -1,8 +1,8 @@
 
-<?php include("cabecalho.php"); include('conecta.php'); include('banco-produto.php') ?>
+<?php include("cabecalho.php"); include('conecta.php'); include('banco-produto.php'); include('logica-usuario.php');?>
 	<?php 
+	verificaUsuario();
 
-	
 	$nome = $_POST['nome'];
 	$preco = $_POST['preco'];
 	$descricao = $_POST['descricao'];
