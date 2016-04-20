@@ -1,4 +1,5 @@
 <?php 
+include('conecta.php'); 
 	function listaCategorias($conexao){
 		$categorias = array();
 		$resultado = mysqli_query($conexao, "SELECT * FROM categorias");
