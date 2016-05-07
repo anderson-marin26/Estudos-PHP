@@ -1,7 +1,5 @@
-<?php require_once('cabecalho.php'); require_once('banco-produto.php');
-?>
+<?php require_once('cabecalho.php'); require_once('banco-produto.php');?>
 
-	
 <table class = "table table-striped table-bordered">
 	<?php $produtos = listaProdutos($conexao);
 	foreach ($produtos as $produto) :
@@ -12,7 +10,9 @@
 			</td>
 			<td>
 				<?=$produto->preco;?>
-			</td> 
+			</td>
+			<td>
+				<?=$produto->valorComDesconto(0.1) ?>
 			<td>
 				<?=substr($produto->descricao,0,50);?>
 			</td>
@@ -33,6 +33,5 @@
 	endforeach
 ?>
 </table>
-
 
 <?php include('rodape.php') ?>
