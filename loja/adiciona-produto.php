@@ -7,23 +7,23 @@
 
 	$produto = new Produto; //criando objeto instanciado na classe produto
 	$categoria = new Categoria;
-	$categoria->id = $_POST['categoria_id'];
-	$produto->nome = $_POST['nome'];
-	$produto->preco = $_POST['preco'];
-	$produto->descricao = $_POST['descricao'];
-	$produto->categoria = $categoria;
+	$categoria->setId($_POST['categoria_id']);
+	$produto->setNome($_POST['nome']);
+	$produto->setPreco($_POST['preco']);
+	$produto->setDescricao($_POST['descricao']);
+	$produto->setCategoria($categoria);
 	//verificando se o checkbox usado foi marcado ou nao
 	if(array_key_exists('usado',$_POST)){
 		$usado = "true";
 	}else{
 		$usado = "false";
 	}
-	$produto->usado = $usado;
+	$produto->setUsado($usado);
 
 	if(insereProduto($conexao, $produto)) { ?>
-		<p class="text-success">Produto <?= $produto->nome ?>, de preço <?= $produto->preco ?> adicionado com sucesso!</p>
+		<p class="text-success">Produto <?= $produto->getNome() ?>, de preço <?= $produto->getPreco() ?> adicionado com sucesso!</p>
 	<?php } else { $msg = mysqli_error($conexao); ?>
-			<p class="text-danger">Produto <?= $produto->nome ?>, não foi adicionado: <?= $msg?></p>
+			<p class="text-danger">Produto <?= $produto->getNome() ?>, não foi adicionado: <?= $msg?></p>
 	<?php
 
 	}

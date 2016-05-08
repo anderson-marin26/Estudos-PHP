@@ -8,13 +8,13 @@ function listaProdutos($conexao){
 		while($produto_atual = mysqli_fetch_assoc($resultado)){
 			$produto = new Produto;
 			$categoria = new Categoria;
-			$categoria->nome = $produto_atual['categoria_nome'];
-			$produto->id = $produto_atual['id'];
-			$produto->nome = $produto_atual['nome'];
-			$produto->preco = $produto_atual['preco'];
-			$produto->descricao = $produto_atual['descricao'];
-			$produto->categoria = $categoria;
-			$produto->usado = $produto_atual['usado'];
+			$categoria->setNome($produto_atual['categoria_nome']);
+			$produto->setId($produto_atual['id']);
+			$produto->setNome($produto_atual['nome']);
+			$produto->setPreco($produto_atual['preco']);
+			$produto->setDescricao($produto_atual['descricao']);
+			$produto->setCategoria($categoria);
+			$produto->setUsado($produto_atual['usado']);
 
 			array_push($produtos, $produto);
 		}
@@ -22,12 +22,12 @@ function listaProdutos($conexao){
 	}	
 
 	function insereProduto($conexao, Produto $produto){ // Aqui, ao inves de estar passando uma variavel para cada item do produto, to passando um objeto que tem q conter os valores da classe produto
-		$query = "insert into produtos (nome,preco,descricao,categoria_id,usado) values('{$produto->nome}',{$produto->preco},'{$produto->descricao}',{$produto->categoria->id},{$produto->usado})";
+		$query = "insert into produtos (nome,preco,descricao,categoria_id,usado) values('{$produto->getNome()}',{$produto->getPreco()},'{$produto->getDescricao()}',{$produto->getCategoria()->getId()},{$produto->getUsado()})";
 		return mysqli_query($conexao,$query);
 	}
 
 	function alteraProduto($conexao, Produto $produto){
-		$query = "update produtos set nome = '{$produto->nome}', preco = {$produto->preco}, descricao = '{$produto->descricao}', categoria_id = {$produto->categoria_id}, usado = {$produto->usado} where id = '{$produto->id}'";
+		$query = "update produtos set nome = '{$produto->nome}', preco = {$produto->getPreco()}, descricao = '{$produto->descricao}', categoria_id = {$produto->categoria_id}, usado = {$produto->usado} where id = '{$produto->id}'";
 		return mysqli_query($conexao,$query);
 	}
 

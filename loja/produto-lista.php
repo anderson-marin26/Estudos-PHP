@@ -6,25 +6,25 @@
 	?>
 		<tr>
 			<td>
-				<?=$produto->nome;?> 
+				<?=$produto->getNome();?> 
 			</td>
 			<td>
-				<?=$produto->preco;?>
+				<?=$produto->getPreco();?>
 			</td>
 			<td>
 				<?=$produto->valorComDesconto(0.1) ?>
 			<td>
-				<?=substr($produto->descricao,0,50);?>
+				<?=substr($produto->getDescricao(),0,50);?>
 			</td>
 			<td>
-				<?=$produto->categoria->nome;?>
+				<?=$produto->getCategoria()->getNome();?>
 			</td>
 			<td>
-				<a href = "produto-altera-formulario.php?id=<?=$produto->id?>" class = "btn btn-primary">Alterar</a>
+				<a href = "produto-altera-formulario.php?id=<?=$produto->getId()?>" class = "btn btn-primary">Alterar</a>
 			</td>
 			<td>
 				<form action = "remove-produto.php" method = "POST">
-					<input type = "hidden" name = "id" value = "<?=$produto->id;?>">
+					<input type = "hidden" name = "id" value = "<?=$produto->getId();?>">
 					<button class = "btn btn-danger">Remover</button>
 				</form>
 			</td>
