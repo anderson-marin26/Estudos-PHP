@@ -5,20 +5,21 @@
 	<?php 
 	verificaUsuario();
 
-	$produto = new Produto; //criando objeto instanciado na classe produto
 	$categoria = new Categoria;
 	$categoria->setId($_POST['categoria_id']);
-	$produto->setNome($_POST['nome']);
-	$produto->setPreco($_POST['preco']);
-	$produto->setDescricao($_POST['descricao']);
-	$produto->setCategoria($categoria);
+	
 	//verificando se o checkbox usado foi marcado ou nao
 	if(array_key_exists('usado',$_POST)){
 		$usado = "true";
 	}else{
 		$usado = "false";
 	}
-	$produto->setUsado($usado);
+	$produto = new Produto($_POST['nome'],
+						$_POST['preco'], 
+						$_POST['descricao'], 
+						$categoria, 
+						$usado);
+
 
 	if(insereProduto($conexao, $produto)) { ?>
 		<p class="text-success">Produto <?= $produto->getNome() ?>, de preço <?= $produto->getPreco() ?> adicionado com sucesso!</p>

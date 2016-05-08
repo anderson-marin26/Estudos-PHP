@@ -6,15 +6,10 @@ function listaProdutos($conexao){
 		$produtos = array();
 		$resultado = mysqli_query($conexao, "SELECT p.*,c.nome as categoria_nome FROM produtos as p join categorias as c on c.id=p.categoria_id");
 		while($produto_atual = mysqli_fetch_assoc($resultado)){
-			$produto = new Produto;
 			$categoria = new Categoria;
 			$categoria->setNome($produto_atual['categoria_nome']);
+			$produto = new Produto($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
 			$produto->setId($produto_atual['id']);
-			$produto->setNome($produto_atual['nome']);
-			$produto->setPreco($produto_atual['preco']);
-			$produto->setDescricao($produto_atual['descricao']);
-			$produto->setCategoria($categoria);
-			$produto->setUsado($produto_atual['usado']);
 
 			array_push($produtos, $produto);
 		}
