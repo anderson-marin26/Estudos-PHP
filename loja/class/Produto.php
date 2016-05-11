@@ -20,10 +20,6 @@
 			return $this->nome." : ".$this->preco."  ".$this->descricao."  ".$this->categoria;
 		}
 
-		function __destruct(){
-			echo "O objeto $this->nome foi destruido!";
-		}
-
 		// Criando Metodo
 		function valorComDesconto($valor = 0.5 /*aqui estou definindo um valor padrao, mas se a chamada passar um valor, ele sera usado*/){
 			if($valor <= 0.5 && $valor < 1 && $valor > 0){
