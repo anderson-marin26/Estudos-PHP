@@ -6,6 +6,7 @@
 
 	// configurando o autoload
 	spl_autoload_register("carregaClasse");
+	
 	error_reporting(E_ALL ^ E_NOTICE); 
 	include('mostra-alerta.php');
 ?>	
