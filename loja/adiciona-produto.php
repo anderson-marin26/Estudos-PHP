@@ -13,8 +13,13 @@
 	}else{
 		$usado = "false";
 	}
-	$produto = new Produto($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
-
+	if($_POST['tipoProduto'] == "Livro"){
+		$produto = new livro($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
+		$produto->isbn = $_POST['isbn'];	
+	}else{
+		$produto = new Produto($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
+	}
+	
 	$produtoDao = new ProdutoDAO($conexao);
 	if($produtoDao->insereProduto($produto)) { ?>
 		<p class="text-success">Produto <?= $produto->getNome() ?>, de preço <?= $produto->getPreco() ?> adicionado com sucesso!</p>

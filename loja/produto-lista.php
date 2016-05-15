@@ -25,6 +25,13 @@
 				<?=$produto->getCategoria()->getNome();?>
 			</td>
 			<td>
+				<?php
+					if($produto->temIsbn()){
+						echo "ISBN: ".$produto->isbn;
+					}
+				?>
+			</td>
+			<td>
 				<a href = "produto-altera-formulario.php?id=<?=$produto->getId()?>" class = "btn btn-primary">Alterar</a>
 			</td>
 			<td>

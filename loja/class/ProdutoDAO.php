@@ -14,22 +14,57 @@
 			while($produto_atual = mysqli_fetch_assoc($resultado)){
 				$categoria = new Categoria;
 				$categoria->setNome($produto_atual['categoria_nome']);
-				$produto = new Produto($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
-				$produto->setId($produto_atual['id']);
+
+				if($produto_atual['tipoProduto'] == "Livro"){
+					$produto = new Livro($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
+					$produto->setId($produto_atual['id']);
+				}else{
+					$produto = new Produto($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
+					$produto->setId($produto_atual['id']);
+				}
+				
+				$produto->isbn = $produto_atual['isbn'];
+				$produto->setTipoProduto($produto_atual['tipoProduto']);
 
 				array_push($produtos, $produto);
 			}
 			return $produtos;
 		}	
 
-		function insereProduto(Produto $produto){ // Aqui, ao inves de estar passando uma variavel para cada item do produto, to passando um objeto que tem q conter os valores da classe produto
-			$query = "insert into produtos (nome,preco,descricao,categoria_id,usado) values('{$produto->getNome()}',{$produto->getPreco()},'{$produto->getDescricao()}',{$produto->getCategoria()->getId()},{$produto->getUsado()})";
-			return mysqli_query($this->conexao,$query);
+		function insereProduto(Produto $produto) {
+
+		    if ($produto->temIsbn()) {
+		        $isbn = $produto->getIsbn();
+		    } else {
+		        $isbn = "";
+		    }
+
+		    $tipoProduto = get_class($produto);
+
+		    $query = "insert into produtos (nome, preco, descricao, categoria_id, 
+		            usado, isbn, tipoProduto) values ('{$produto->getNome()}', 
+		                {$produto->getPreco()}, '{$produto->getDescricao()}', 
+		                    {$produto->getCategoria()->getId()}, {$produto->isUsado()}, 
+		                        '{$isbn}', '{$tipoProduto}')";
+		    return mysqli_query($this->conexao, $query);
 		}
 
 		function alteraProduto(Produto $produto){
-			$query = "update produtos set nome = '{$produto->getNome()}', preco = {$produto->getPreco()}, descricao = '{$produto->getDescricao()}', categoria_id = {$produto->getCategoria()->getId()}, usado = {$produto->getUsado()} where id = '{$produto->getId()}'";
-			return mysqli_query($this->conexao,$query);
+		    if ($produto->temIsbn()) {
+		        $isbn = $produto->getIsbn();
+		    } else {
+		        $isbn = "";
+		    }
+
+		    $tipoProduto = get_class($produto);
+
+		    $query = "update produtos set nome = '{$produto->getNome()}', 
+		        preco = {$produto->getPreco()}, descricao = '{$produto->getDescricao()}', 
+		            categoria_id= {$produto->getCategoria()->getId()}, 
+		                usado = {$produto->isUsado()}, isbn = '{$isbn}', 
+		                    tipoProduto = '{$tipoProduto}' 
+		                        where id = '{$produto->getId()}'";
+		    return mysqli_query($this->conexao, $query);
 		}
 
 		function buscaProduto($id){

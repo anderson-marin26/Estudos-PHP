@@ -28,55 +28,59 @@
 			return $this->preco;
 		}
 
+		public function temIsbn(){
+			return $this instanceof Livro;
+		}
+
 		// Geters
-		function getId(){
+		public function getId(){
 			return $this->id;
 		}
 
-		function getNome(){
+		public function getNome(){
 			return $this->nome;
 		}
 
-		function getPreco(){
+		public function getPreco(){
 			return $this->preco;
 		}
 
-		function getDescricao(){
+		public function getDescricao(){
 			return $this->descricao;
 		}
 
-		function getCategoria(){
+		public function getCategoria(){
 			return $this->categoria;
 		}
 
-		function getUsado(){
+		public function getUsado(){
 			return $this->usado;
 		}
 
 		// Seters
-		function setId($id){
+		public function setId($id){
 			$this->id = $id;
 		}
 
-		function setNome($nome){
+		public function setNome($nome){
 			$this->nome = $nome;
 		}
 
-		function setPreco($preco){
+		public function setPreco($preco){
 			if($preco > 0){
 				$this->preco = $preco;	
 			}
 		}
 
-		function setDescricao($descricao){
+		public function setDescricao($descricao){
 			$this->descricao = $descricao;
 		}
 
-		function setCategoria($categoria){
+		public function setCategoria($categoria){
 			$this->categoria = $categoria;
 		}
 
-		function setUsado($usado){
+		public function setUsado($usado){
 			$this->usado = $usado;
 		}
 	}
