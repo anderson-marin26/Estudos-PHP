@@ -20,6 +20,8 @@
 			return $this->nome." : ".$this->preco."  ".$this->descricao."  ".$this->categoria;
 		}
 
+		abstract public function calculaPrecoDeVenda();
+
 		public function calculaImposto() {
 				return $this->getPreco() * 0.195;	
 		}

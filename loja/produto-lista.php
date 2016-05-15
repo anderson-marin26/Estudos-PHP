@@ -19,6 +19,10 @@
 			<td>
 				<?=$produto->calculaImposto()?>
 			<td>
+			<td>
+				<?=$produto->calculaPrecoDeVenda()?>
+			</td>
+			<td>
 				<?=substr($produto->getDescricao(),0,50);?>
 			</td>
 			<td>
