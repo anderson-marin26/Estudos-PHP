@@ -17,7 +17,7 @@
 				<?=$produto->getPreco();?>
 			</td>
 			<td>
-				<?=$produto->valorComDesconto(0.1) ?>
+				<?=$produto->calculaImposto()?>
 			<td>
 				<?=substr($produto->getDescricao(),0,50);?>
 			</td>
