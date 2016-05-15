@@ -14,9 +14,12 @@
 			while($produto_atual = mysqli_fetch_assoc($resultado)){
 				$categoria = new Categoria;
 				$categoria->setNome($produto_atual['categoria_nome']);
-				$produto = new Produto($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
-				$produto->setId($produto_atual['id']);
 
+				if($produto_atual['tipoProduto'] == "LivroFisico"){
+					$produto = new $produto_atual['tipoProduto']($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
+					$produto->isbn = $produto_atual['isbn'];
+				}
+				$produto->setId($produto_atual['id']);
 				array_push($produtos, $produto);
 			}
 			return $produtos;

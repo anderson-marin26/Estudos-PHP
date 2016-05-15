@@ -15,17 +15,11 @@
 				$categoria = new Categoria;
 				$categoria->setNome($produto_atual['categoria_nome']);
 
-				if($produto_atual['tipoProduto'] == "Livro"){
-					$produto = new Livro($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
-					$produto->setId($produto_atual['id']);
-				}else{
-					$produto = new Produto($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
-					$produto->setId($produto_atual['id']);
+				if($produto_atual['tipoProduto'] == "LivroFisico"){
+					$produto = new $produto_atual['tipoProduto']($produto_atual['nome'], $produto_atual['preco'], $produto_atual['descricao'], $categoria, $produto_atual['usado']);
+					$produto->isbn = $produto_atual['isbn'];
 				}
-				
-				$produto->isbn = $produto_atual['isbn'];
-				$produto->setTipoProduto($produto_atual['tipoProduto']);
-
+				$produto->setId($produto_atual['id']);
 				array_push($produtos, $produto);
 			}
 			return $produtos;
@@ -34,7 +28,7 @@
 		function insereProduto(Produto $produto) {
 
 		    if ($produto->temIsbn()) {
-		        $isbn = $produto->getIsbn();
+		        $isbn = $produto->isbn;
 		    } else {
 		        $isbn = "";
 		    }

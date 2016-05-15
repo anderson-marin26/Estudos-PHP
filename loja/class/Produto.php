@@ -1,5 +1,5 @@
 <?php
-	class Produto {
+	abstract class Produto {
 		private $id;
 		private $nome;
 		private $preco;

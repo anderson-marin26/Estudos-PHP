@@ -32,8 +32,10 @@
 	</td>
 	<td>
 		<select name="tipoProduto">
-			<option value="Livro">Livro</option>
-			<option value="Produto">Produto</option>
+			<optgroup label="Livros">
+				<option value="LivroFisico">Livro Fisico</option>
+				<option value="Ebook">Ebook</option>
+			</optgroup>
 		</select>
 	</td>
 </tr>

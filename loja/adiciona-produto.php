@@ -1,6 +1,6 @@
 <?php 
 	require_once('cabecalho.php');
-	require_once('banco-produto.php');
+	//require_once('banco-produto.php');
 	require_once('logica-usuario.php');
 
 	verificaUsuario();
@@ -13,11 +13,11 @@
 	}else{
 		$usado = "false";
 	}
-	if($_POST['tipoProduto'] == "Livro"){
-		$produto = new livro($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
-		$produto->isbn = $_POST['isbn'];	
-	}else{
-		$produto = new Produto($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
+
+	$aceita = array('LivroFisico','Ebook');
+	if(in_array($_POST['tipoProduto'],$aceita)){
+		$produto = new $_POST['tipoProduto']($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
+		$produto->isbn = $_POST['isbn'];
 	}
 	
 	$produtoDao = new ProdutoDAO($conexao);
