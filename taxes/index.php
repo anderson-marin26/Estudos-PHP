@@ -4,6 +4,7 @@
 	require 'ISS.php';
 	require 'KCV.php';
 	require 'ICMS.php';
+	require 'ICCC.php';
 	require 'Resources.php';
 	require 'TaxesCalculator.php';
 
@@ -16,4 +17,6 @@
 	echo $calculator->calculate($reform, new ISS());
 	echo "<br />";
 	echo $calculator->calculate($reform, new KCV());
+	echo "<br />";
+	echo $calculator->calculate($reform, new ICCC());
 ?>
